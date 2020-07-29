@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Order Music</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>
+            Rikkeisoft Intranet
+        </title>
+        <script>
+            var baseUrl = 'https://rikkei.vn/';
+            var currentUrl = 'https://rikkei.vn/music/order/office/2/';
+            var siteConfigGlobal = {
+                token: 'wO0AEa75UTtAMtI83p1oD167yLdQtWwkdmzPwnYl',
+                base_url: 'https://rikkei.vn/',
+                menu_active: '',
+            };
+        </script>
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <link rel="icon" href="https://rikkei.vn/favicon.ico" type="image/x-icon">
+        <link rel="Shortcut Icon" type="image/x-icon" href="https://rikkei.vn/favicon.ico">
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.8/css/AdminLTE.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.8/css/skins/_all-skins.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.1.0/css/flag-icon.min.css" rel="stylesheet">
+        <!-- common style -->
+        <link rel="stylesheet" href="https://rikkei.vn/common/css/style.css?v=383" />
+        <link rel="stylesheet" href="https://rikkei.vn/asset_notify/css/notify.css?v=383" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.1.0/css/flag-icon.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css" />
+        <link rel="stylesheet" href="https://rikkei.vn/asset_music/css/music.css?v=383" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400&amp;subset=vietnamese" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/skins/square/red.css" />
+    </head>
+    <body class="hold-transition skin-blue layout-top-nav">
+        <div class="wrapper">
+            <div id="header"></div>
+            <!-- Full Width Column -->
+            <div class=" music-content" url = "https://rikkei.vn/common/images/music_bgr.jpg">
+                <!-- Main content -->
+                <section class="content">
+                    <div class="content-container">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="music-form row">
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-10">
+                                        <div class="box box-order">
+                                            <h2 class="align-center">Order Music</h2>
+                                            <div class="with-border music-order">
+                                                <div id="form1"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-8 list-content">
+                                <div class="row music-list">
+                                    <div class="col-xs-1 prev-next">
+                                    </div>
+                                    <div class="col-xs-10">
+                                        <div class="list">
+                                            <div id="list"></div>
+                                        </div>
+                                        <div class="pagination-order box-pagination align-center">
+                                            <ul class="pagination">
+                                                <li class = "disabled">
+                                                    <span>Đầu</span>    
+                                                </li>
+                                                <li class = "disabled">
+                                                    <span>«</span>    
+                                                </li>
+                                                <li class="active">
+                                                    <a href="https://rikkei.vn/music/order/office/2?page=1">1</a>    
+                                                </li>
+                                                <li class="">
+                                                    <a href="https://rikkei.vn/music/order/office/2?page=2">2</a>    
+                                                </li>
+                                                <li class="">
+                                                    <a href="https://rikkei.vn/music/order/office/2?page=3">3</a>    
+                                                </li>
+                                                <li class="">
+                                                    <a href="https://rikkei.vn/music/order/office/2?page=4">4</a>    
+                                                </li>
+                                                <li class="">
+                                                    <a href="https://rikkei.vn/music/order/office/2?page=5">5</a>    
+                                                </li>
+                                                <li >
+                                                    <a href="https://rikkei.vn/music/order/office/2?page=2">»</a>    
+                                                </li>
+                                                <li >
+                                                    <a href="https://rikkei.vn/music/order/office/2?page=654">Cuối</a>   
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- /.content -->
+                <div class="content-footer"><span>Copyright © 2017 RikkeiSoft. All rights reserved.</span></div>
+                <!-- /.container -->
+            </div>
+            <aside class="main-sidebar">
+                <!-- sidebar: style can be found in sidebar.less -->
+                <section class="sidebar">
+                    <!-- sidebar menu: : style can be found in sidebar.less -->
+                    <ul class="sidebar-menu"></ul>
+                </section>
+                <!-- /.sidebar -->
+            </aside>
+        </div>
+        <!-- ./wrapper -->
+    </body>
+</html>
