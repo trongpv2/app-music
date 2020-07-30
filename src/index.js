@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Header from './Header';
-import Form1 from './Form1';
-import List from './List';
+import Header from './component/Header';
+import Form1 from './component/Form1';
+import List from './component/List';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
