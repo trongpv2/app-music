@@ -27,6 +27,24 @@ class Form1 extends Component {
 
     onSubmit(event) {
         event.preventDefault();
+        var {link, name, sender, receiver, message} = this.state;
+        axios({
+            method : 'POST',
+            url : 'http://localhost:3001/posts',
+            data: {
+                link : link,
+                name : name,
+                sender : sender,
+                receiver: receiver,
+                message: message,
+                time: new Date
+            }
+        }).then(res => {
+            console.log(res);
+            window.location.reload();
+        }).catch(err => {
+            console.log(err)
+        });
     }
 
     render() {
