@@ -13,7 +13,7 @@ class List extends Component {
         const uri = window.location.href;
         const page = uri.split("?page=");
         let pageNow = page[1] ? page[1] : 1;
-        let url = "http://localhost:3001/posts?_page="+pageNow+"&_limit=5";
+        let url = "https://musicapp-db.herokuapp.com/posts?_page="+pageNow+"&_limit=7";
         fetch(url)
             .then(response => response.json())
             .then(data => {

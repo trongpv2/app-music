@@ -30,7 +30,7 @@ class Form1 extends Component {
         var {link, name, sender, receiver, message} = this.state;
         axios({
             method : 'POST',
-            url : 'http://localhost:3001/posts',
+            url : 'https://musicapp-db.herokuapp.com/posts',
             data: {
                 link : link,
                 name : name,
