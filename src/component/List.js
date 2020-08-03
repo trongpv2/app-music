@@ -1,4 +1,4 @@
-import React, { Component} from 'react';
+import React, { Component } from 'react';
 import dateFormat from 'dateformat';
 
 class List extends Component {
@@ -13,7 +13,7 @@ class List extends Component {
         const uri = window.location.href;
         const page = uri.split("?page=");
         let pageNow = page[1] ? page[1] : 1;
-        let url = "https://musicapp-db.herokuapp.com/posts?_page="+pageNow+"&_limit=7";
+        let url = "https://musicapp-db.herokuapp.com/posts?_sort=id&_order=desc&_page="+pageNow+"&_limit=2";
         fetch(url)
             .then(response => response.json())
             .then(data => {
@@ -25,13 +25,17 @@ class List extends Component {
                         const href = "#exampleModalCenter" + props.id;
                         return (
                             <a href={href} data-toggle="modal">
-                                <img src={img}/>
+                                <img src={img} alt={props.name} />
                             </a>
                         );
                     } else {
                         return (
-                            <a target="_blank" href={props.link}>
-                                <img src="https://cdn.imgbin.com/7/14/10/imgbin-google-play-music-computer-icons-on-off-mundo-eletrorg-nico-google-zh3ppGgmtN3LZ2UEs7usU6TPP.jpg" style={{width: 235, height:183}}/>
+                            <a target="_blank" href={props.link} rel="noopener noreferrer">
+                                <img 
+                                    src="https://cdn.imgbin.com/7/14/10/imgbin-google-play-music-computer-icons-on-off-mundo-eletrorg-nico-google-zh3ppGgmtN3LZ2UEs7usU6TPP.jpg" 
+                                    alt="{props.name}"
+                                    style={{width: 235, height:183}}
+                                />
                             </a>
                         );
                     }
@@ -53,6 +57,7 @@ class List extends Component {
                                 </div>
                                     <div className="modal-body">
                                         <iframe 
+                                            title="{props.name}"
                                             width="560" 
                                             height="315" 
                                             src={"https://www.youtube.com/embed/" + id[1]} 
@@ -66,22 +71,21 @@ class List extends Component {
                         </div>
                     );
                 }
-                let posts = data.map((post, index) => {
+                let posts = data.map((post) => {
                     let urlLink = post.link;
-                    let id = [];
                     this.setState({target: "_blank"});
                     this.setState({href : post.link});
                     if (urlLink.includes("youtube.com")) {
-                        this.setState({href : "#exampleModalCenter" + index});
+                        this.setState({href : "#exampleModalCenter" + post.id});
                         this.setState({target: ''});
                         this.setState({dtoggle: 'modal'});
                     }
                     return (
-                        <div className="box box-music" key={index}>
+                        <div className="box box-music" key={post.id}>
                             <div className="row">
                                 <div className="col-xs-12 col-sm-3 col-md-4 col-lg-3">
                                     <div className="thumbnail">
-                                        <Image link={post.link} id={index}/>
+                                        <Image link={post.link} id={post.id}/>
                                     </div>
                                 </div>
                                 <div className="col-xs-12 col-sm-9 col-md-8 col-lg-9">
@@ -122,7 +126,7 @@ class List extends Component {
                                     </span>
                                 </div>
                             </div>
-                            <Modal name={post.name} link={post.link} index={index} />
+                            <Modal name={post.name} link={post.link} index={post.id} />
                         </div>
                     )
                 })

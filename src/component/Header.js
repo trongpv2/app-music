@@ -9,7 +9,7 @@ function Header() {
                 <div className=" col-md-2 redundancy"></div>
                 <div className="col-md-12 col-xs-6  col-md-10  align-center" id="logo-sm">
                     <a className="navbar-brand align-center" href="#" id="a-logo">
-                    <img src="https://rikkei.vn/asset_music/images/logo-rikkei.png"/>
+                    <img src="https://rikkei.vn/asset_music/images/logo-rikkei.png" alt="" />
                     </a>
                 </div>
                 <div className="col-xs-6 align-right" id="menu-sm">
@@ -23,7 +23,7 @@ function Header() {
                     <div className="col-md-1"></div>
                     <div className="col-md-10 ">
                         <div className="scrollmenu">
-                            <a href="#" value="2">Hà Nội HH4</a>
+                            <a>Hà Nội HH4</a>
                         </div>
                     </div>
                 </div>

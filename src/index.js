@@ -4,6 +4,7 @@ import './index.css';
 import Header from './component/Header';
 import Form1 from './component/Form1';
 import List from './component/List';
+import Paginate from './component/Paginate';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
@@ -19,6 +20,11 @@ ReactDOM.render(
 ReactDOM.render(
   <List />,
   document.getElementById('list')
+);
+
+ReactDOM.render(
+  <Paginate />,
+  document.getElementById('paginate')
 );
 
 

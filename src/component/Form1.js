@@ -10,7 +10,12 @@ class Form1 extends Component {
             name : '',
             sender : '',
             receiver: '',
-            message: ''
+            message: '',
+            errors: {
+                link: '',
+                name: '',
+                message: ''
+            }
         };
         this.onHandleChange = this.onHandleChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -21,12 +26,37 @@ class Form1 extends Component {
         var name = target.name;
         var value = target.value;
         this.setState({
-            [name] : value
+            [name] : value,
         });
     }
 
+    handleValidation() {
+        let errors = {};
+        let formIsValid = true;
+
+        if (!this.state.link) {
+            formIsValid = false;
+            errors["link"] = "Không để trống trường này";
+        }
+
+        if (!this.state.name) {
+            formIsValid = false;
+            errors["name"] = "Không để trống trường này";
+        }
+
+        if (!this.state.message) {
+            formIsValid = false;
+            errors["message"] = "Không để trống trường này";
+        }
+
+        this.setState({errors: errors});
+        return formIsValid;
+    }
     onSubmit(event) {
         event.preventDefault();
+        if (!this.handleValidation()) {
+            return;
+        }
         var {link, name, sender, receiver, message} = this.state;
         axios({
             method : 'POST',
@@ -37,7 +67,7 @@ class Form1 extends Component {
                 sender : sender,
                 receiver: receiver,
                 message: message,
-                time: new Date
+                time: new Date()
             }
         }).then(res => {
             console.log(res);
@@ -53,7 +83,8 @@ class Form1 extends Component {
                 <form onSubmit={this.onSubmit}>
                     <div className="box-body">
                         <div className="form-group">
-                            <label htmlFor="link" className="control-label required">Link <em>*</em></label>
+                            <label htmlFor="link" className="control-label required">Link <em>*</em></label>&nbsp;
+                            <label id="link-error" className="error" htmlFor="link">{this.state.errors['link']}</label>
                             <input name="link" 
                                 className="form-control input-field" 
                                 type="text"
@@ -63,7 +94,8 @@ class Form1 extends Component {
                             />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="name" className="control-label required">Bài hát <em>*</em></label>
+                            <label htmlFor="name" className="control-label required">Bài hát <em>*</em></label>&nbsp;
+                            <label id="name-error" className="error" htmlFor="name">{this.state.errors['name']}</label>
                             <input name="name" 
                                 className="form-control input-field" 
                                 type="text"
@@ -93,7 +125,8 @@ class Form1 extends Component {
                             />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="message-order" className="control-label required">Lời nhắn <em>*</em></label>
+                            <label htmlFor="message-order" className="control-label required">Lời nhắn <em>*</em></label>&nbsp;
+                            <label id="message-error" className="error" htmlFor="message">{this.state.errors['message']}</label>
                             <textarea name="message" 
                                 className="form-control" 
                                 rows="3"
