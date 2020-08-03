@@ -14,7 +14,7 @@ class Paginate extends Component {
         const uri = window.location.href;
         const page = uri.split("?page=");
         let pageNow = page[1] ? page[1] : 1;
-        this.setState({page : pageNow});
+        this.setState({page: pageNow});
         axios({
             method: 'get',
             url: 'https://musicapp-db.herokuapp.com/posts',
@@ -26,26 +26,31 @@ class Paginate extends Component {
     }
 
     render() {
+        const { page, totalPage } = this.state
         let pageIndexs = [];
-        for (let i = 1; i <= this.state.totalPage; i++) {
+        for (let i = 1; i <= totalPage; i++) {
             pageIndexs.push(i);
         }
         return (
             <ul className="pagination">
-                <li className = "disabled">
-                    <span>Đầu</span>    
-                 </li>
+                <li className={page == 1 ? 'disabled' : ''}>
+                    {
+                        page == 1 ? <span>Đầu</span> : <a href="page=1">Đầu</a> 
+                    }
+                </li>
                 {
                     pageIndexs.map((pageIndex, index) => {
-                        if (this.state.page === pageIndex) {
+                        if (page == pageIndex) {
                             return (<li key={index} className="active"><a href={"/?page="+pageIndex}>{pageIndex}</a></li>);
                         } else {
                             return (<li key={index}><a href={"/?page="+pageIndex}>{pageIndex}</a></li>);
                         }
                     })
                 }
-                <li >
-                     <a href={"/?page="+this.state.totalPage}>Cuối</a>   
+                <li className={page == totalPage ? 'disabled' : ''}>
+                     {
+                        page == totalPage ? <span>Cuối</span> : <a href={"/?page="+totalPage}>Cuối</a> 
+                    }
                  </li>
             </ul>
         );
