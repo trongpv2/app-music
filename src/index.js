@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Header from './component/Header';
-import Form1 from './component/Form1';
-import List from './component/List';
-import Paginate from './component/Paginate';
+import Header from './components/Header';
+import Form1 from './components/Form1';
+import List from './components/List';
+import Demo from './components/ListItem';
+import Paginate from './components/Paginate';
 import * as serviceWorker from './serviceWorker';
+import "./components/style.css";
 
 ReactDOM.render(
   <Header />,
@@ -17,14 +19,21 @@ ReactDOM.render(
   document.getElementById('form1')
 );
 
-ReactDOM.render(
-  <List />,
-  document.getElementById('list')
-);
+// ReactDOM.render(
+//   <List />,
+//   document.getElementById('list')
+// );
+
+// ReactDOM.render(
+//   <Paginate />,
+//   document.getElementById('paginate')
+// );
 
 ReactDOM.render(
-  <Paginate />,
-  document.getElementById('paginate')
+  <React.StrictMode>
+    <Demo />
+  </React.StrictMode>,
+  document.getElementById('list')
 );
 
 

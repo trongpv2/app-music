@@ -13,8 +13,8 @@ class Paginate extends Component {
     componentDidMount() {
         const uri = window.location.href;
         const page = uri.split("?page=");
-        let pageNow = page[1] ? page[1] : 1;
-        this.setState({page: pageNow});
+        let curentPage = page[1] ? page[1] : 1;
+        this.setState({page: curentPage});
         axios({
             method: 'get',
             url: 'https://musicapp-db.herokuapp.com/posts',
@@ -33,25 +33,25 @@ class Paginate extends Component {
         }
         return (
             <ul className="pagination">
-                <li className={page == 1 ? 'disabled' : ''}>
+                <li className={page === 1 ? 'disabled' : ''}>
                     {
-                        page == 1 ? <span>Đầu</span> : <a href="page=1">Đầu</a> 
+                        page === 1 ? <span>Đầu</span> : <a href="page=1">Đầu</a> 
                     }
                 </li>
                 {
                     pageIndexs.map((pageIndex, index) => {
-                        if (page == pageIndex) {
+                        if (page === pageIndex) {
                             return (<li key={index} className="active"><a href={"/?page="+pageIndex}>{pageIndex}</a></li>);
                         } else {
                             return (<li key={index}><a href={"/?page="+pageIndex}>{pageIndex}</a></li>);
                         }
                     })
                 }
-                <li className={page == totalPage ? 'disabled' : ''}>
-                     {
+                <li className={page === totalPage ? 'disabled' : ''}>
+                    {
                         page == totalPage ? <span>Cuối</span> : <a href={"/?page="+totalPage}>Cuối</a> 
                     }
-                 </li>
+                </li>
             </ul>
         );
     }

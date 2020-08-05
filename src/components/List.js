@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import dateFormat from 'dateformat';
+import FormatDate from './FormatDate';
+import Modal from './Modal';
+import imgDefault from '../assets/music.png';
+import ReactPaginate from 'react-paginate';
 
 class List extends Component {
     constructor(props) {
@@ -32,7 +35,7 @@ class List extends Component {
                         return (
                             <a target="_blank" href={props.link} rel="noopener noreferrer">
                                 <img 
-                                    src="https://cdn.imgbin.com/7/14/10/imgbin-google-play-music-computer-icons-on-off-mundo-eletrorg-nico-google-zh3ppGgmtN3LZ2UEs7usU6TPP.jpg" 
+                                    src={imgDefault}
                                     alt="{props.name}"
                                     style={{width: 235, height:183}}
                                 />
@@ -41,36 +44,6 @@ class List extends Component {
                     }
                 };
 
-                function Time(props) {
-                    return dateFormat(props.date, "yyyy-mm-dd H:MM")
-                }
-                function Modal(props) {
-                    let link = props.link;
-                    let id = link.split("v=");
-                    return (
-                        <div className="modal fade" id={"exampleModalCenter" + props.index} tabIndex={-1} role="dialog" aria-labelledby={props.name} aria-hidden="true">
-                            <div className="modal-dialog modal-dialog-centered" role="document">
-                                <div className="modal-content">
-                                <div className="modal-header">
-                                    <button type="button" className="close" data-dismiss="modal">&times;</button>
-                                    <h4 className="modal-title">{props.name}</h4>
-                                </div>
-                                    <div className="modal-body">
-                                        <iframe 
-                                            title="{props.name}"
-                                            width="560" 
-                                            height="315" 
-                                            src={"https://www.youtube.com/embed/" + id[1]} 
-                                            frameBorder="0" 
-                                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-                                            allowFullScreen>
-                                        </iframe>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    );
-                }
                 let posts = data.map((post) => {
                     let urlLink = post.link;
                     this.setState({target: "_blank"});
@@ -91,7 +64,7 @@ class List extends Component {
                                 <div className="col-xs-12 col-sm-9 col-md-8 col-lg-9">
                                     <div className="box-script">
                                         <div className="box-title" data-toggle="tooltip" title={post.name}>
-                                            <a target={this.state.target} href={this.state.href} data-toggle="modal">
+                                            <a target={this.state.target} href={this.state.href} data-toggle={this.state.dtoggle}>
                                                 <b className="glyphicon glyphicon-cd"></b>
                                                 <span>
                                                     {post.name}
@@ -101,9 +74,9 @@ class List extends Component {
                                         <div className="box-infor">
                                             <p>
                                                 <span className="from-to">Do </span> 
-                                                <b>{post.sender ? post.sender : "Ẩn danh"} </b>
+                                                <b>{post.sender ? post.sender : "Nặc danh"} </b>
                                                 <span className="from-to">gửi đến </span>
-                                                <b>{post.receiver ? post.receiver : "Ẩn danh"}</b>
+                                                <b>{post.receiver ? post.receiver : "Ai đấy..."}</b>
                                             </p>
                                             <div className="box-mess">
                                                 <span> 
@@ -122,7 +95,7 @@ class List extends Component {
                             <div className=" align-right">
                                 <div className="box-time">
                                     <span >
-                                        &nbsp;&nbsp;<Time date={post.time}/>&nbsp;&nbsp;
+                                        &nbsp;&nbsp;<FormatDate date={post.time}/>&nbsp;&nbsp;
                                     </span>
                                 </div>
                             </div>

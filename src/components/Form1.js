@@ -33,18 +33,24 @@ class Form1 extends Component {
     handleValidation() {
         let errors = {};
         let formIsValid = true;
-
-        if (!this.state.link) {
+        const { link, name, message } = this.state
+        if (!link) {
             formIsValid = false;
             errors["link"] = "Không để trống trường này";
+        } else {
+            var regLink = link.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
+            if(regLink == null) {
+                formIsValid = false;
+                errors["link"] = "Please enter a valid URL.";
+            }
         }
 
-        if (!this.state.name) {
+        if (!name) {
             formIsValid = false;
             errors["name"] = "Không để trống trường này";
         }
 
-        if (!this.state.message) {
+        if (!message) {
             formIsValid = false;
             errors["message"] = "Không để trống trường này";
         }
@@ -91,6 +97,7 @@ class Form1 extends Component {
                                 placeholder="http://..." 
                                 onChange={ this.onHandleChange }
                                 value={this.state.link}
+                                autoComplete="off"
                             />
                         </div>
                         <div className="form-group">
@@ -102,7 +109,8 @@ class Form1 extends Component {
                                 placeholder="Tên bài hát..." 
                                 onChange={ this.onHandleChange }
                                 value={this.state.name}
-                                />
+                                autoComplete="off"
+                            />
                         </div>
                         <div className="form-group">
                             <label htmlFor="sender" className="control-label">Người gửi</label>
@@ -112,6 +120,7 @@ class Form1 extends Component {
                                 placeholder="Họ và tên..." 
                                 onChange={ this.onHandleChange }
                                 value={this.state.sender}
+                                autoComplete="off"
                             />
                         </div>
                         <div className="form-group">
@@ -122,6 +131,7 @@ class Form1 extends Component {
                                 placeholder="Họ và tên..." 
                                 onChange={ this.onHandleChange }
                                 value={this.state.receiver}
+                                autoComplete="off"
                             />
                         </div>
                         <div className="form-group">
